@@ -7,15 +7,6 @@ function LoginPage() {
     const [error, setError] = useState(false)
 
     function sendData() {
-        const buildDB = async () => {
-            try {
-                const d = await fetch('http://localhost:5000/login/setup')
-                if (!d.ok) throw new Error('error')
-            } catch (e) {
-                console.log(e)
-            }
-
-        }
         const func = async () => {
             try {
                 const d = await fetch('http://localhost:5000/login/' + input, { method: 'POST' })
@@ -32,7 +23,6 @@ function LoginPage() {
                 console.log(e)
             }
         }
-        buildDB()
         func()
     }
 

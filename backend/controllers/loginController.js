@@ -29,6 +29,29 @@ exports.postEmail = async (req, res) => {
     }
     let userid
 
+    await db.query(`
+        CREATE TABLE IF NOT EXISTS Notes
+            (
+                noteId SERIAL PRIMARY KEY,
+                text VARCHAR(300) NOT NULL
+            );
+
+        CREATE TABLE IF NOT EXISTS Users
+        (
+            userId SERIAL PRIMARY KEY,
+            email VARCHAR(100) NOT NULL
+        );
+
+        CREATE TABLE IF NOT EXISTS users_notes
+        (
+            noteId INT NOT NULL,
+            userId INT NOT NULL,
+            PRIMARY KEY(noteId, userId),
+            FOREIGN KEY(noteId) REFERENCES Notes(noteId),
+            FOREIGN KEY(userId) REFERENCES Users(userId)
+        );
+    `)
+
     const data = await db.query(`SELECT * FROM Users WHERE email = $1`, [email])
 
     if (data.rowCount === 0) {
@@ -48,28 +71,6 @@ exports.postEmail = async (req, res) => {
 exports.getSetup = ('/setup', async (req, res) => {
     console.log("SETUP DB")
     try {
-        const data = await db.query(`
-            CREATE TABLE IF NOT EXISTS Notes
-                (
-                    noteId SERIAL PRIMARY KEY,
-                    text VARCHAR(300) NOT NULL
-                );
-
-            CREATE TABLE IF NOT EXISTS Users
-            (
-                userId SERIAL PRIMARY KEY,
-                email VARCHAR(100) NOT NULL
-            );
-
-            CREATE TABLE IF NOT EXISTS users_notes
-            (
-                noteId INT NOT NULL,
-                userId INT NOT NULL,
-                PRIMARY KEY(noteId, userId),
-                FOREIGN KEY(noteId) REFERENCES Notes(noteId),
-                FOREIGN KEY(userId) REFERENCES Users(userId)
-            );
-        `)
         res.sendStatus(200)
     } catch (err) {
         console.log(err)
