@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+html,
+body {
+  min-width: 330px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+
+section {
+  padding: 0;
+  margin: 0;
+  min-width: 330px;
+  width: 100%;
+}
+
+.loginPage {
+  background-color: rgb(45, 46, 49);
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  gap: 150px;
+  margin-top: 100px;
+}
+
+.loginForm button {
+  background-color: #1ab1d3;
+
+}
+
+button {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-size: 25px;
+  padding: 10px 70px;
+  outline: none;
+}
+
+.loginForm button:focus,
+.loginForm input:focus {
+  outline: none;
+}
+
+.loginForm input {
+  width: 550px;
+  height: 50px;
+  background-color: rgb(57, 59, 66);
+  border: 2px rgb(75, 77, 85) solid;
+  text-decoration: none;
+  color: white;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+.mainPage {
+  background-color: rgb(45, 46, 49);
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+li {
+  list-style: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+ul {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  background-color: #1ab1d3;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 50px;
+}
+
+.notes {
+  width: 98vw;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
+  row-gap: 10px;
+}
+
+.note {
+  width: 300px;
+  height: 350px;
+  background-color: #EAF95F;
+  position: relative;
+  padding: 50px 10px 0 10px;
+}
+
+.dot {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-20%, 0%);
+  scale: 3;
+  image-rendering: pixelated;
+}
+
+.note-info-text {
+  color: white;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.note-div:hover .note-info-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.modal {
+  width: 100px;
+  height: 200px;
+  background-color: #00000050;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  gap: 120px;
+}
+
+.new-note {
+  background-color: #EAF95F;
+  position: relative;
+  padding: 50px 10px 0 10px;
+}
+
+.new-note textarea {
+  width: 300px;
+  height: 350px;
+  background-color: #EAF95F;
+  border: none;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.new-note textarea::placeholder {
+  color: rgb(141, 143, 58);
+}
+
+.new-note textarea:focus {
+  outline: none;
+}
+
+.delete {
+  position: absolute;
+  top: 20px;
+  left: 90%;
+  scale: 3;
+  image-rendering: pixelated;
+}
+
+.edit {
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  scale: 3;
+  image-rendering: pixelated;
+}
+
+@media (max-width: 1900px) {
+  .notes {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1600px) {
+  .notes {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1300px) {
+  .notes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .notes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 700px) {
+  .notes {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .loginForm input {
+    width: 250px;
+  }
+}
